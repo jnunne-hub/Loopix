@@ -70,7 +70,7 @@
   <script>
       if ('serviceWorker' in navigator) {
           window.addEventListener('load', () => {
-              navigator.serviceWorker.register('/sw.js') // Assurez-vous que sw.js est à la racine
+              navigator.serviceWorker.register('sw.js') // Assurez-vous que sw.js est à la racine
                   .then(registration => {
                       console.log('Service Worker enregistré avec succès:', registration.scope);
                   })
