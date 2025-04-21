@@ -1,0 +1,256 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #1e1e2f 0%, #2a2a40 100%);
+  color: #e0e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.player {
+  background: #2a2a40;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 24px;
+  color: #00ddeb;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.player-controls {
+  background: #353550;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.track-info {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#current-track {
+  font-size: 16px;
+  color: #e0e0e0;
+  font-weight: 500;
+}
+
+#progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #4a4a6a;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+#progress-bar::-webkit-progress-bar {
+  background: #4a4a6a;
+  border-radius: 4px;
+}
+
+#progress-bar::-webkit-progress-value {
+  background: #00ddeb;
+  border-radius: 4px;
+}
+
+#progress-bar::-moz-progress-bar {
+  background: #00ddeb;
+  border-radius: 4px;
+}
+
+#time-display {
+  font-size: 14px;
+  color: #b0b0d0;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.controls button {
+  background: #00ddeb;
+  color: #1e1e2f;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.controls button:hover {
+  background: #00b7c3;
+  transform: scale(1.1);
+}
+
+.upload-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.upload-btn {
+  background: #4a4a6a;
+  color: #e0e0e0;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s ease;
+}
+
+.upload-btn:hover {
+  background: #5a5a8a;
+}
+
+#file-input {
+  display: none;
+}
+
+#clear-playlist {
+  background: #ff5555;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s ease;
+}
+
+#clear-playlist:hover {
+  background: #ff3333;
+}
+
+.playlist {
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #00ddeb #4a4a6a;
+}
+
+.playlist h2 {
+  font-size: 18px;
+  color: #00ddeb;
+  margin-bottom: 10px;
+}
+
+.playlist ul {
+  list-style: none;
+}
+
+.playlist li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background: #353550;
+  margin-bottom: 5px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.playlist li:hover {
+  background: #4a4a6a;
+}
+
+.playlist li span {
+  flex: 1;
+  cursor: pointer;
+  font-size: 14px;
+  color: #e0e0e0;
+}
+
+.delete-btn {
+  background: #ff5555;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+  background: #ff3333;
+}
+.albums {
+      margin-top: 20px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .albums h2 {
+      font-size: 18px;
+      color: #00ddeb;
+      margin-bottom: 10px;
+    }
+    .album {
+      background: #353550;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .album h3 {
+      color: #e0e0e0;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    .album-tracks {
+      list-style: none;
+      padding-left: 10px;
+    }
+    .album-tracks li {
+      padding: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .album-tracks li:hover {
+      background: #4a4a6a;
+    }
+    .album-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .album-actions button {
+      background: #00ddeb;
+      color: #1e1e2f;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .album-actions button:hover {
+      background: #00b7c3;
+    }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecteur de Musique</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Assurez-vous que ce chemin est correct -->
+  <script src="lib/jsmediatags.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <!-- Manifest pour PWA -->
+  <link rel="manifest" href="manifest.json">
+</head>
+<body> <!-- La classe de thème sera ajoutée ici par JS -->
+  <div class="player">
+    <div class="header">
+      <h1>Lecteur de Musique</h1>
+      <!-- Sélecteur de thème -->
+      <div class="theme-selector">
+          <span>Thème:</span>
+          <button data-theme="default" title="Thème Sombre (Défaut)">Sombre</button>
+          <button data-theme="theme-light" title="Thème Clair">Clair</button>
+          <button data-theme="theme-ocean" title="Thème Océan">Océan</button>
+          <button data-theme="theme-forest" title="Thème Forêt">Forêt</button>
+      </div>
+    </div>
+    <div class="player-controls">
+      <div class="track-info">
+        <!-- Image pour la pochette actuelle (agrandie) -->
+        <img id="current-track-cover" src="placeholder.png" alt="Pochette actuelle">
+        <span id="current-track">Aucune piste sélectionnée</span>
+      </div>
+      <!-- Barre de progression cliquable -->
+      <progress id="progress-bar" value="0" max="100"></progress>
+      <div id="time-display">0:00 / 0:00</div>
+      <div class="controls">
+        <button id="prev" title="Précédent"><i class="fas fa-backward"></i></button>
+        <button id="play" title="Play"><i class="fas fa-play"></i></button>
+        <button id="pause" title="Pause"><i class="fas fa-pause"></i></button>
+        <button id="next" title="Suivant"><i class="fas fa-forward"></i></button>
+        
+          <div class="volume-control">
+            <i id="volume-icon" class="fas fa-volume-up" title="Muet"></i>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+          </div>
+        <button id="shuffle" title="Lecture aléatoire"><i class="fas fa-shuffle"></i></button>
+        <button id="repeat" title="Répéter"><i class="fas fa-redo"></i></button>
+      </div>
+    </div>
+    <div class="upload-section">
+      <label for="file-input" class="upload-btn">
+        <i class="fas fa-upload"></i> Ajouter des fichiers
+      </label>
+      <input type="file" id="file-input" accept="audio/*" multiple>
+      <button id="clear-playlist" title="Vider la playlist"><i class="fas fa-trash"></i> Vider</button>
+    </div>
+    <div class="playlist">
+      <h2>Playlist</h2>
+      <ul id="playlist-items">
+        <!-- Les éléments de la playlist seront ajoutés ici par JS -->
+      </ul>
+    </div>
+  </div>
+
+  <audio id="audio-player"></audio>
+
+  <!-- Script principal à la fin -->
+  <script src="script.js"></script>
+  <!-- Script pour enregistrer le Service Worker (si vous l'utilisez) -->
+  <script>
+      if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+              navigator.serviceWorker.register('/sw.js') // Assurez-vous que sw.js est à la racine
+                  .then(registration => {
+                      console.log('Service Worker enregistré avec succès:', registration.scope);
+                  })
+                  .catch(error => {
+                      console.error('Échec de l\'enregistrement du Service Worker:', error);
+                  });
+          });
+      }
+  </script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --- Définition des Variables CSS (Thème Sombre par Défaut) --- */
+:root {
+  /* Couleurs de fond */
+  --bg-gradient-start: #1e1e2f;
+  --bg-gradient-end: #2a2a40;
+  --player-bg: #2a2a40;
+  --controls-bg: #353550;
+  --playlist-item-bg: #353550;
+  --playlist-item-hover-bg: #4a4a6a;
+  --playlist-item-playing-bg: #5a5a8a;
+  --placeholder-bg: #4a4a6a;
+
+  /* Couleurs de texte */
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0d0;
+  --text-on-accent: #1e1e2f;
+  --text-on-danger: #ffffff;
+  --title-color: #00ddeb;
+
+  /* Couleurs d'accentuation */
+  --accent-primary: #00ddeb;
+  --accent-hover: #00b7c3;
+  --accent-active: #00a0ad;
+
+  /* Couleurs Danger / Suppression */
+  --danger-primary: #ff5555;
+  --danger-hover: #ff3333;
+
+  /* Autres couleurs */
+  --border-color: #4a4a6a;
+  --progress-track: #4a4a6a;
+  --progress-value: var(--accent-primary);
+  --scrollbar-thumb: var(--accent-primary);
+  --scrollbar-track: #4a4a6a;
+
+  /* Ombres */
+  --shadow-color-main: rgba(0, 0, 0, 0.5);
+  --shadow-color-accent: rgba(0, 221, 235, 0.5);
+  --shadow-controls-hover: var(--accent-primary);
+
+  /* Transitions */
+  --transition-speed: 0.3s;
+}
+
+/* --- Thème Clair --- */
+body.theme-light {
+  --bg-gradient-start: #eef2f3;
+  --bg-gradient-end: #f0f4f7;
+  --player-bg: #ffffff;
+  --controls-bg: #f8f9fa;
+  --playlist-item-bg: #f8f9fa;
+  --playlist-item-hover-bg: #e9ecef;
+  --playlist-item-playing-bg: #dee2e6;
+  --placeholder-bg: #e9ecef;
+
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --text-on-accent: #ffffff;
+  --text-on-danger: #ffffff;
+  --title-color: #007bff; /* Bleu */
+
+  --accent-primary: #007bff;
+  --accent-hover: #0056b3;
+  --accent-active: #004085;
+
+  --danger-primary: #dc3545;
+  --danger-hover: #c82333;
+
+  --border-color: #dee2e6;
+  --progress-track: #e9ecef;
+  --scrollbar-track: #e9ecef;
+  --shadow-color-main: rgba(0, 0, 0, 0.1);
+  --shadow-color-accent: rgba(0, 123, 255, 0.3);
+}
+
+/* --- Thème Ocean --- */
+body.theme-ocean {
+  --bg-gradient-start: #09203f;
+  --bg-gradient-end: #1f4287;
+  --player-bg: #123456;
+  --controls-bg: #1a4f8a;
+  --playlist-item-bg: #1a4f8a;
+  --playlist-item-hover-bg: #2a64a4;
+  --playlist-item-playing-bg: #3a7ac0;
+  --placeholder-bg: #2a64a4;
+
+  --text-primary: #e0f7fa;
+  --text-secondary: #b3e5fc;
+  --text-on-accent: #09203f;
+  --text-on-danger: #ffffff;
+  --title-color: #80deea; /* Cyan */
+
+  --accent-primary: #ffab40; /* Orange */
+  --accent-hover: #ff9100;
+  --accent-active: #ff6d00;
+
+  --danger-primary: #ef5350;
+  --danger-hover: #d32f2f;
+
+  --border-color: #2a64a4;
+  --progress-track: #2a64a4;
+  --scrollbar-track: #2a64a4;
+  --shadow-color-main: rgba(0, 0, 0, 0.4);
+  --shadow-color-accent: rgba(255, 171, 64, 0.4);
+}
+
+/* --- Thème Forest --- */
+body.theme-forest {
+  --bg-gradient-start: #3a603e;
+  --bg-gradient-end: #1f3a21;
+  --player-bg: #2a4a2c;
+  --controls-bg: #406a42;
+  --playlist-item-bg: #406a42;
+  --playlist-item-hover-bg: #558a58;
+  --playlist-item-playing-bg: #6aa86d;
+  --placeholder-bg: #558a58;
+
+  --text-primary: #e8f5e9;
+  --text-secondary: #c8e6c9;
+  --text-on-accent: #1b2e1c;
+  --text-on-danger: #ffffff;
+  --title-color: #a5d6a7; /* Vert clair */
+
+  --accent-primary: #ffc107; /* Ambre */
+  --accent-hover: #ffb300;
+  --accent-active: #ffa000;
+
+  --danger-primary: #f44336;
+  --danger-hover: #d32f2f;
+
+  --border-color: #558a58;
+  --progress-track: #558a58;
+  --scrollbar-track: #558a58;
+  --shadow-color-main: rgba(0, 0, 0, 0.4);
+  --shadow-color-accent: rgba(255, 193, 7, 0.4);
+}
+
+
+/* --- Styles Généraux Utilisant les Variables --- */
+
+body {
+  font-family: 'Poppins', sans-serif; /* Assurez-vous que cette police est chargée ou utilisez une alternative */
+  background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  transition: background var(--transition-speed) ease, color var(--transition-speed) ease; /* Transition pour le body */
+}
+
+.player {
+  background: var(--player-bg);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px var(--shadow-color-main);
+  width: 100%;
+  max-width: 500px;
+  padding: 25px;
+  overflow: hidden;
+  transition: background var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 5px; /* Réduit pour faire place au sélecteur */
+}
+
+.header h1 {
+  font-size: 24px;
+  color: var(--title-color);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: color var(--transition-speed) ease;
+}
+
+.theme-selector {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.theme-selector span {
+  margin-right: 10px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  transition: color var(--transition-speed) ease;
+}
+
+.theme-selector button {
+  background: var(--controls-bg);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 5px 12px;
+  margin: 0 3px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.theme-selector button:hover {
+  background: var(--playlist-item-hover-bg);
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+}
+
+.theme-selector button.active-theme {
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+  border-color: var(--accent-primary);
+  font-weight: bold;
+}
+
+
+.player-controls {
+  background: var(--controls-bg);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: background var(--transition-speed) ease;
+}
+
+.track-info {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#current-track-cover {
+  width: 120px; /* Pochette agrandie */
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0 auto 20px auto;
+  display: block;
+  border: 2px solid var(--border-color);
+  background-color: var(--placeholder-bg);
+  box-shadow: 0 4px 10px var(--shadow-color-main);
+  transition: border-color var(--transition-speed) ease, background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+#current-track {
+  font-size: 16px;
+  color: var(--text-primary);
+  font-weight: 500;
+  display: block;
+  transition: color var(--transition-speed) ease;
+}
+
+#progress-bar {
+  width: 100%;
+  height: 8px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent; /* Fond géré par pseudo-éléments */
+  border-radius: 4px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+#progress-bar:hover {
+    box-shadow: 0 0 5px var(--accent-primary);
+}
+
+#progress-bar::-webkit-progress-bar {
+  background-color: var(--progress-track);
+  border-radius: 4px;
+  transition: background-color var(--transition-speed) ease;
+}
+#progress-bar::-webkit-progress-value {
+  background-color: var(--progress-value);
+  border-radius: 4px;
+  transition: background-color var(--transition-speed) ease, width 0.1s linear;
+}
+
+#progress-bar::-moz-progress-bar {
+  background-color: var(--progress-value);
+  border-radius: 4px;
+   transition: background-color var(--transition-speed) ease, width 0.1s linear;
+   /* Le fond de la track est géré par le style de #progress-bar sur FF ? Non, il utilise le background de l'élément lui-même. Mettons-le pour FF */
+   background-color: var(--progress-track);
+}
+
+
+#time-display {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 20px;
+  transition: color var(--transition-speed) ease;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.controls button {
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background var(--transition-speed) ease, box-shadow 0.2s ease, color var(--transition-speed) ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.controls button:hover {
+  background: var(--accent-hover);
+  transform: scale(1.1);
+  box-shadow: 0 0 10px var(--shadow-controls-hover);
+}
+.controls button.active {
+    background: var(--accent-active);
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+}
+
+#pause {
+  display: none;
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-secondary); /* Icône volume */
+   transition: color var(--transition-speed) ease;
+}
+/* Ciblez spécifiquement l'icône dans le contrôle de volume */
+.volume-control > i {
+  color: var(--text-secondary); /* Garde la couleur du thème */
+  transition: color var(--transition-speed) ease;
+  cursor: pointer; /* Indique qu'il est cliquable */
+  /* 'gap: 10px;' dans .volume-control gère l'espacement, pas besoin de margin ici */
+}
+
+/* Optionnel : Style différent au survol */
+.volume-control > i:hover {
+    color: var(--text-primary); /* Légèrement plus visible au survol */
+}
+#volume-slider {
+  width: 100px;
+  height: 6px;
+  cursor: pointer;
+  accent-color: var(--accent-primary);
+  transition: accent-color var(--transition-speed) ease;
+}
+
+.upload-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.upload-btn, #clear-playlist {
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background var(--transition-speed) ease, transform 0.2s ease, color var(--transition-speed) ease;
+  border: none;
+}
+.upload-btn {
+  background: var(--controls-bg);
+  color: var(--text-primary);
+}
+.upload-btn:hover {
+  background: var(--playlist-item-hover-bg);
+  transform: scale(1.05);
+}
+#clear-playlist {
+  background: var(--danger-primary);
+  color: var(--text-on-danger);
+}
+#clear-playlist:hover {
+  background: var(--danger-hover);
+  transform: scale(1.05);
+}
+
+#file-input {
+  display: none;
+}
+
+.playlist {
+  max-height: 250px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  padding-right: 5px;
+  transition: scrollbar-color var(--transition-speed) ease;
+}
+.playlist h2 {
+  font-size: 18px;
+  color: var(--title-color);
+  margin-bottom: 10px;
+  position: sticky;
+  top: 0;
+  background: var(--player-bg); /* Utiliser var pour masquer le scroll */
+  padding-bottom: 5px;
+  z-index: 1;
+  transition: color var(--transition-speed) ease, background var(--transition-speed) ease;
+}
+.playlist ul {
+  list-style: none;
+}
+.playlist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  background: var(--playlist-item-bg);
+  margin-bottom: 8px;
+  border-radius: 8px;
+  transition: background var(--transition-speed) ease;
+  cursor: pointer;
+}
+.playlist li:hover {
+  background: var(--playlist-item-hover-bg);
+}
+
+.playlist li.playing {
+  background-color: var(--playlist-item-playing-bg);
+  font-weight: bold;
+  box-shadow: 0 0 8px var(--shadow-color-accent);
+  transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+.playlist li.playing span {
+     color: var(--text-primary); /* Assurer lisibilité */
+}
+
+.playlist li img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  background-color: var(--placeholder-bg);
+  transition: background-color var(--transition-speed) ease;
+}
+
+.playlist li span {
+  flex-grow: 1;
+  font-size: 14px;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+   transition: color var(--transition-speed) ease;
+}
+
+.delete-btn {
+  background: var(--danger-primary);
+  color: var(--text-on-danger);
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-speed) ease, transform 0.2s ease, color var(--transition-speed) ease;
+  margin-left: 5px;
+  padding: 0;
+}
+.delete-btn i {
+    line-height: 1;
+}
+.delete-btn:hover {
+  background: var(--danger-hover);
+  transform: scale(1.1);
+}
+
+/* Scrollbar styles pour Webkit (Chrome, Safari) */
+.playlist::-webkit-scrollbar {
+  width: 8px;
+}
+.playlist::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 4px;
+   transition: background var(--transition-speed) ease;
+}
+.playlist::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 4px;
+   transition: background-color var(--transition-speed) ease;
+}
+.playlist::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Liens - Style par défaut pour une meilleure accessibilité si des liens sont ajoutés */
+a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}

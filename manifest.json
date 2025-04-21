@@ -1,0 +1,17 @@
+{
+  "name": "Lecteur de Musique",
+  "short_name": "Musique",
+  "description": "Un lecteur de musique local avec playlist et métadonnées.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#2a2a40",
+  "theme_color": "#00ddeb",
+  "icons": [
+  
+    {
+      "src": "/icons/icon-512x512.png", // Créez ces icônes
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
