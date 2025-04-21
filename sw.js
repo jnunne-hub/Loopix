@@ -1,6 +1,6 @@
 const CACHE_NAME = 'music-player-v1'; // Changez si vous modifiez les fichiers mis en cache
 const urlsToCache = [
-  '/', // Cache la racine (souvent index.html)
+  './', // Cache la racine (souvent index.html)
   'index.html',
   'style.css',
   'script.js',
